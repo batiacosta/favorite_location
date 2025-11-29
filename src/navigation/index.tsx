@@ -1,48 +1,54 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HeaderButton, Text } from '@react-navigation/elements';
-import {
-  createStaticNavigation,
-  StaticParamList,
-} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
 import { Image } from 'react-native';
-import bell from '../assets/bell.png';
-import newspaper from '../assets/newspaper.png';
+import { NavigationContainer, NavigationContainerProps } from '@react-navigation/native';
+import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import AddPlace from './screens/AddPlaces';
 import AllPlaces from './screens/AllPlaces';
 import IconButton from '../components/UI/IconButton';
 
+export type RootStackParamList = {
+  AllPlaces: undefined;
+  AddPlace: undefined;
+};
 
-const RootStack = createNativeStackNavigator({
-  screens: {
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-    AllPlaces: {
-      screen: AllPlaces,
-      options: ({ navigation }: { navigation: any }) => ({
-        title: 'All Places',
-        headerRight: ({ tintColor }: { tintColor?: string }) => (
-          <IconButton icon="add" size={24} color={tintColor} 
-            onPress={() => {
-              navigation.navigate('AddPlace');
-            }} />
-        ),
-      }),
-    },
-    AddPlace: {
-      screen: AddPlace,
-      options: {
-        title: 'Add New Place',
-      },
-    }
-  },
-});
+type Props = NavigationContainerProps & {
+  screenOptions?: NativeStackNavigationOptions;
+  [key: string]: any;
+};
 
-export const Navigation = createStaticNavigation(RootStack);
-
-type RootStackParamList = StaticParamList<typeof RootStack>;
-
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
+export function Navigation({ screenOptions, ...navProps }: Props) {
+  return (
+    <NavigationContainer {...navProps}>
+      <Stack.Navigator screenOptions={screenOptions}>
+        <Stack.Screen
+          name="AllPlaces"
+          component={AllPlaces}
+          options={({ navigation }) => ({
+            title: 'All Places',
+            headerRight: ({ tintColor }) => (
+              <IconButton
+                icon="add"
+                size={24}
+                color={tintColor}
+                onPress={() => {
+                  // navigation type is inferred from generic, keep any for safety
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (navigation as any).navigate('AddPlace');
+                }}
+              />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="AddPlace"
+          component={AddPlace}
+          options={{ title: 'Add New Place' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
+
+export default Navigation;

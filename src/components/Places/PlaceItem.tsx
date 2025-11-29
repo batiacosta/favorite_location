@@ -1,5 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { PlaceType } from '../../models/place';
+import { Colors } from '../../constants/colors';
 
 type Props = {
   place: PlaceType;
@@ -40,6 +41,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   address: {
-    color: '#666',
+    color: Colors.primary200,
   },
 });

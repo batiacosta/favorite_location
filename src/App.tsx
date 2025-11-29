@@ -1,4 +1,4 @@
-import { Assets as NavigationAssets } from '@react-navigation/elements';
+import { Background, Assets as NavigationAssets } from '@react-navigation/elements';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { Asset } from 'expo-asset';
 import { createURL } from 'expo-linking';
@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { useColorScheme } from 'react-native';
 import { Navigation } from './navigation';
+import { Colors } from './constants/colors';
 
 Asset.loadAsync([
   ...NavigationAssets,
@@ -24,9 +25,13 @@ export function App() {
 
   return (
     <Navigation
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primary500 },
+        headerTintColor: Colors.gray700,
+        contentStyle: { backgroundColor: Colors.gray700 },
+      }}
       theme={theme}
       linking={{
-        enabled: 'auto',
         prefixes: [prefix],
       }}
       onReady={() => {
