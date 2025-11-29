@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "favorite_location",
+    "slug": "favorite_location",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "favoritelocation",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.favoritelocation"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.favoritelocation"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/splash-icon.png"
+        }
+      ]
+    ]
+  }
+}
