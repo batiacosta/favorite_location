@@ -10,6 +10,7 @@ import bell from '../assets/bell.png';
 import newspaper from '../assets/newspaper.png';
 import AddPlace from './screens/AddPlaces';
 import AllPlaces from './screens/AllPlaces';
+import IconButton from '../components/UI/IconButton';
 
 
 const RootStack = createNativeStackNavigator({
@@ -17,9 +18,15 @@ const RootStack = createNativeStackNavigator({
 
     AllPlaces: {
       screen: AllPlaces,
-      options: {
+      options: ({ navigation }: { navigation: any }) => ({
         title: 'All Places',
-      },
+        headerRight: ({ tintColor }: { tintColor?: string }) => (
+          <IconButton icon="add" size={24} color={tintColor} 
+            onPress={() => {
+              navigation.navigate('AddPlace');
+            }} />
+        ),
+      }),
     },
     AddPlace: {
       screen: AddPlace,

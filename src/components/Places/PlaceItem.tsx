@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import type { PlaceType } from '../models/place';
+import type { PlaceType } from '../../models/place';
 
 type Props = {
   place: PlaceType;

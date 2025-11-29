@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import type { PlaceType } from '../models/place';
+import type { PlaceType } from '../../models/place';
 import PlaceItem from './PlaceItem';
 
 type Props = {
