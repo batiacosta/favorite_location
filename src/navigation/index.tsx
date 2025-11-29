@@ -13,6 +13,8 @@ import { Profile } from './screens/Profile';
 import { Settings } from './screens/Settings';
 import { Updates } from './screens/Updates';
 import { NotFound } from './screens/NotFound';
+import AddPlace from './screens/AddPlaces';
+import AllPlaces from './screens/AllPlaces';
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -52,11 +54,23 @@ const HomeTabs = createBottomTabNavigator({
 
 const RootStack = createNativeStackNavigator({
   screens: {
-    HomeTabs: {
-      screen: HomeTabs,
+    // HomeTabs: {
+    //   screen: HomeTabs,
+    //   options: {
+    //     title: 'Home',
+    //     headerShown: false,
+    //   },
+    // },
+    AllPlaces: {
+      screen: AllPlaces,
       options: {
-        title: 'Home',
-        headerShown: false,
+        title: 'All Places',
+      },
+    },
+    AddPlace: {
+      screen: AddPlace,
+      options: {
+        title: 'Add New Place',
       },
     },
     Profile: {
